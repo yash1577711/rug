@@ -74,8 +74,13 @@ TEMPLATES = [{
 
 # Database
 DATABASES = {
-    'default': env.db()  # Automatically uses DATABASE_URL from Render
+    'default': env.db('DATABASE_URL', default='sqlite:///db.sqlite3')
 }
+
+# Add this to handle Render's PostgreSQL properly
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = env.db('DATABASE_URL')
+    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
 
 # Static & Media
 STATIC_URL = '/static/'
@@ -98,14 +103,11 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
-SITE_ID = 1
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_LOGIN_METHODS = ['email']
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_USERNAME_REQUIRED = False
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
 # Social Login (Google)
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -132,7 +134,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='yk1577711@gmail.com')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='your-app-password')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='batc fesa sjgp llut')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='yk1577711@gmail.com')
 
 # Email verification redirects
