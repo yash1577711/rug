@@ -137,7 +137,12 @@ def set_currency(request):
                 del request.session['manual_currency']
         return redirect(request.META.get('HTTP_REFERER', '/'))
     return redirect('/')
-
+# Add this function temporarily
+def create_admin_user(request):
+    from django.contrib.auth.models import User
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@example.com', 'yourpassword123')
+    return HttpResponse("Admin user created!")
 def get_currency_info(request):
     """API to get current currency info"""
     return JsonResponse({
