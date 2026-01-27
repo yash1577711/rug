@@ -12,6 +12,7 @@ from orders import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('create-admin/', core_views.create_admin_user, name='create_admin'),
     path('', core_views.home, name='home'),
     path('products/', include('products.urls')),  # ← This now works!
 
