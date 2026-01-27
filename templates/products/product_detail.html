@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} | KaleenBaba{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto py-12 px-4">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <!-- Image Gallery -->
+    <div class="space-y-4">
+      <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+        <img src="{{ product.image.url }}" 
+             class="w-full h-auto max-h-[600px] object-contain cursor-pointer hover:scale-105 transition-transform"
+             alt="{{ product.name }}">
+      </div>
+      <!-- Thumbnail gallery could go here -->
+    </div>
+
+    <!-- Product Info -->
+    <div>
+      <div class="mb-6">
+        <h1 class="text-3xl font-heading text-gray-800 mb-2">{{ product.name }}</h1>
+        <p class="text-2xl font-bold text-amber-700 mb-4">
+          <!-- ✅ UPDATED: Use request.currency instead of user_currency -->
+          {% if request.currency == 'INR' %}
+            ₹{{ product.price_inr }}
+          {% else %}
+            ${{ product.price_usd }}
+          {% endif %}
+        </p>
+        
+        <div class="flex items-center gap-4 mb-6">
+          <div class="flex text-yellow-400 text-lg">
+            ★★★★★
+          </div>
+          <span class="text-gray-600">(4.8 based on 128 reviews)</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-6 mb-8">
+        <div>
+          <h3 class="font-bold text-gray-800 mb-2">Material</h3>
+          <p class="text-gray-600">{{ product.material }}</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-800 mb-2">Category</h3>
+          <p class="text-gray-600">{{ product.category }}</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-800 mb-2">Origin</h3>
+          <p class="text-gray-600">India</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-800 mb-2">Quality</h3>
+          <p class="text-gray-600">Premium Handwoven</p>
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <h3 class="font-bold text-gray-800 mb-3">Description</h3>
+        <p class="text-gray-700 leading-relaxed">{{ product.description }}</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 mb-8">
+        <a href="{% url 'add_to_cart' product.id %}" 
+           class="flex-1 py-4 bg-gray-100 hover:bg-gray-200 text-center rounded-xl font-medium text-lg">
+          Add to Cart
+        </a>
+        <a href="{% url 'checkout' product.id %}" 
+           class="flex-1 py-4 bg-amber-700 hover:bg-amber-800 text-white text-center rounded-xl font-medium text-lg">
+          Buy Now
+        </a>
+      </div>
+
+      <div class="bg-green-50 border border-green-200 rounded-xl p-6">
+        <h3 class="font-bold text-green-800 flex items-center gap-2">
+          ✨ Premium Benefits
+        </h3>
+        <ul class="text-green-700 text-sm mt-3 space-y-2">
+          <li>• Free global shipping & returns</li>
+          <li>• Hand-inspected for quality</li>
+          <li>• 30-day satisfaction guarantee</li>
+          <li>• Supports artisan livelihoods</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  {% if related_products %}
+  <section class="mt-20">
+    <h2 class="text-2xl font-heading text-gray-800 mb-8">You Might Also Like</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for related_product in related_products %}
+      <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+        <img src="{{ related_product.image.url }}" 
+             class="w-full h-48 object-cover rounded-lg mb-4" 
+             alt="{{ related_product.name }}">
+        <h3 class="font-medium text-gray-800 mb-2">{{ related_product.name }}</h3>
+        <p class="text-amber-700 font-bold">
+          <!-- ✅ UPDATED: Use request.currency instead of user_currency -->
+          {% if request.currency == 'INR' %}
+            ₹{{ related_product.price_inr }}
+          {% else %}
+            ${{ related_product.price_usd }}
+          {% endif %}
+        </p>
+        <a href="{% url 'product_detail' related_product.id %}" class="text-amber-700 text-sm hover:underline">View Details</a>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

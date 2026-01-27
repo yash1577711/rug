@@ -1,0 +1,85 @@
+<!-- IP Detection Widget -->
+<div class="fixed bottom-4 right-4 z-50">
+  <div id="ip-widget" class="bg-white rounded-lg shadow-lg border border-gray-200 p-4 max-w-xs">
+    <div class="flex justify-between items-start mb-3">
+      <h3 class="font-bold text-gray-800 text-sm">🌐 IP Location</h3>
+      <button onclick="toggleIPForm()" class="text-gray-400 hover:text-gray-600">
+        <i class="fas fa-cog text-xs"></i>
+      </button>
+    </div>
+    
+    <div id="ip-display" class="mb-3">
+      <p class="text-xs text-gray-600 mb-1">Current IP:</p>
+      <p id="current-ip" class="font-mono text-sm bg-gray-100 px-2 py-1 rounded">{{ request.ip_address }}</p>
+    </div>
+    
+    <div id="ip-form" class="hidden">
+      <form method="post" action="{% url 'set_manual_ip' %}" class="space-y-2">
+        {% csrf_token %}
+        <input type="text" 
+               name="manual_ip" 
+               placeholder="Enter IP address"
+               class="w-full text-xs px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-amber-500"
+               value="{{ request.session.manual_ip|default:'' }}">
+        <div class="flex space-x-2">
+          <button type="submit" class="flex-1 text-xs bg-amber-600 hover:bg-amber-700 text-white px-2 py-1 rounded">
+            Apply
+          </button>
+          <button type="button" onclick="clearManualIP()" class="flex-1 text-xs bg-gray-200 hover:bg-gray-300 text-gray-800 px-2 py-1 rounded">
+            Auto
+          </button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="text-xs text-gray-500 mt-2">
+      <span id="ip-status" class="inline-flex items-center">
+        {% if 'manual_ip' in request.session %}
+          <span class="w-2 h-2 bg-red-500 rounded-full mr-1"></span> Manual
+        {% else %}
+          <span class="w-2 h-2 bg-green-500 rounded-full mr-1"></span> Auto
+        {% endif %}
+      </span>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleIPForm() {
+  const form = document.getElementById('ip-form');
+  const display = document.getElementById('ip-display');
+  form.classList.toggle('hidden');
+  display.classList.toggle('hidden');
+}
+
+function clearManualIP() {
+  fetch('/set-ip/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+    },
+    body: 'manual_ip='
+  }).then(() => {
+    location.reload();
+  });
+}
+
+// Update IP display dynamically
+function updateIPInfo() {
+  fetch('/api/ip-info/')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('current-ip').textContent = data.current_ip;
+      const status = document.getElementById('ip-status');
+      if (data.is_manual) {
+        status.innerHTML = '<span class="w-2 h-2 bg-red-500 rounded-full mr-1"></span> Manual';
+      } else {
+        status.innerHTML = '<span class="w-2 h-2 bg-green-500 rounded-full mr-1"></span> Auto';
+      }
+    });
+}
+
+// Update every 30 seconds
+setInterval(updateIPInfo, 30000);
+</script>

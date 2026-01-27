@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | KaleenBaba – Premium Carpets & Rugs{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-gradient h-[700px] bg-cover bg-center flex items-center relative">
+  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+  <div class="max-w-4xl mx-auto text-center px-4 text-white relative z-10">
+    <h1 class="text-4xl md:text-6xl font-heading mb-6 leading-tight">
+      Premium Carpets & Rugs, 
+      <span class="block text-amber-400">Crafted with Passion</span>
+    </h1>
+    <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+      Over four decades of experience bringing authentic craftsmanship to your home. 
+      Our design experts help you choose the perfect carpets and rugs to match your style and space.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="{% url 'product_list' %}" class="btn btn-primary px-8 py-4 text-lg">
+        Explore Collection
+      </a>
+      <a href="{% url 'trade' %}" class="btn btn-secondary px-8 py-4 text-lg bg-white bg-opacity-20 hover:bg-opacity-30">
+        Trade Inquiry
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Featured Products -->
+<section class="py-20 px-4 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-heading text-gray-800 mb-4">Featured Collection</h2>
+      <p class="text-gray-600">Hand-selected pieces showcasing traditional craftsmanship</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      {% for product in featured_products %}
+      <div class="product-hover bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+        <div class="relative group">
+          <img src="{{ product.image.url }}" 
+               class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-105" 
+               loading="lazy"
+               alt="{{ product.name }}">
+          <div class="absolute top-4 right-4 bg-amber-600 text-white px-4 py-2 rounded-full font-bold shadow-lg">
+            {% if user_currency == 'INR' %}₹{{ product.price_inr }}{% else %}${{ product.price_usd }}{% endif %}
+          </div>
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+            <div class="flex gap-2">
+              <a href="{% url 'add_to_cart' product.id %}" class="bg-white text-amber-700 px-4 py-2 rounded-lg font-medium hover:bg-amber-50">Add to Cart</a>
+              <a href="{% url 'product_detail' product.id %}" class="bg-amber-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-amber-700">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-bold text-xl text-gray-800 mb-2">{{ product.name }}</h3>
+          <p class="text-gray-600 text-sm mb-3">{{ product.material }} • {{ product.category }}</p>
+          <div class="flex items-center justify-between">
+            <span class="text-amber-600 font-semibold">40+ Years Experience</span>
+            <div class="flex text-yellow-400">
+              ★★★★★
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-span-full text-center py-12">
+        <p class="text-gray-600 text-lg">No products available yet. Check back soon!</p>
+        <a href="{% url 'product_list' %}" class="btn btn-primary mt-4 inline-block">Browse Collection</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="py-20 bg-gradient-to-br from-amber-50 to-white">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-3xl font-heading mb-8 text-gray-800">Our Legacy</h2>
+    <p class="text-gray-700 text-lg italic mb-10 max-w-3xl mx-auto leading-relaxed">
+      "At KaleenBaba, we bring over four decades of experience to your home or office. 
+      Our design experts help you choose the perfect carpets and rugs to match your style and space."
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
+        <h3 class="font-bold text-xl text-amber-700 mb-4">Expert Craftsmanship</h3>
+        <p class="text-gray-600">Over 40 years of experience in premium carpet and rug manufacturing.</p>
+      </div>
+      <div class="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
+        <h3 class="font-bold text-xl text-amber-700 mb-4">Design Excellence</h3>
+        <p class="text-gray-600">Expert design team to help match your style and space requirements.</p>
+      </div>
+      <div class="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
+        <h3 class="font-bold text-xl text-amber-700 mb-4">Quality Guaranteed</h3>
+        <p class="text-gray-600">Premium materials and rigorous quality control for lasting beauty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

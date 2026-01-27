@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Order #{{ order.id }} | KaleenBaba{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto py-12 px-4">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-heading">Order #{{ order.id }}</h1>
+    <a href="{% url 'user_orders' %}" class="text-amber-700 hover:underline">← Back to Orders</a>
+  </div>
+  
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Order Summary -->
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+      <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+      <div class="space-y-3">
+        <div class="flex justify-between">
+          <span>Product:</span>
+          <span>{{ order.product.name }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Quantity:</span>
+          <span>{{ order.quantity }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Amount:</span>
+          <span class="font-bold">
+            {% if order.currency == 'INR' %}₹{% else %}${% endif %}{{ order.total_amount }}
+          </span>
+        </div>
+        <div class="flex justify-between">
+          <span>Status:</span>
+          <span class="font-bold
+            {% if order.status == 'pending' %}text-yellow-600
+            {% elif order.status == 'confirmed' %}text-blue-600
+            {% elif order.status == 'shipped' %}text-purple-600
+            {% elif order.status == 'delivered' %}text-green-600
+            {% else %}text-red-600{% endif %}">
+            {{ order.get_status_display }}
+          </span>
+        </div>
+        <div class="flex justify-between">
+          <span>Order Date:</span>
+          <span>{{ order.created_at|date:"M d, Y" }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Customer Info -->
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+      <h2 class="text-xl font-bold mb-4">Customer Information</h2>
+      <div class="space-y-3">
+        <div class="flex justify-between">
+          <span>Name:</span>
+          <span>{{ user.get_full_name|default:user.email }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Email:</span>
+          <span>{{ user.email }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Payment ID:</span>
+          <span>{{ order.payment_id|default:"N/A" }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

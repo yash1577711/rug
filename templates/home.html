@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-screen overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent z-10"></div>
+  <img src="{% static 'images/hero.jpg' %}" 
+       alt="Premium Carpets & Rugs" 
+       class="w-full h-full object-cover"
+       onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600586240923-7a9d9e5a3f1e?auto=format&fit=crop&w=1920&q=80';">
+
+  <!-- Content Overlay -->
+  <div class="absolute inset-0 flex items-center">
+    <div class="max-w-4xl mx-auto px-6 z-20 text-white">
+      <h1 class="text-5xl md:text-7xl font-heading mb-6 leading-tight">
+        Premium Carpets & Rugs, 
+        <span class="block text-amber-400">Crafted with Passion</span>
+      </h1>
+      <p class="text-xl mb-8 opacity-90 max-w-2xl">
+        Over four decades of experience bringing authentic craftsmanship to your home. 
+        Our design experts help you choose the perfect carpets and rugs to match your style and space.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="{% url 'product_list' %}" class="btn btn-primary px-10 py-4 text-lg font-bold">
+          Explore Collection
+        </a>
+        <a href="{% url 'trade' %}" class="btn btn-secondary px-10 py-4 text-lg font-medium bg-white bg-opacity-20 hover:bg-opacity-30">
+          Trade Inquiry
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Story Section -->
+<section class="my-16 max-w-4xl mx-auto px-4">
+  <h2 class="text-3xl font-bold text-center mb-12">From Craving to Craft</h2>
+  
+  <div class="text-center mb-10">
+    <p class="text-gray-700 text-lg italic">
+      "The journey of KaleenBaba began with a simple craving for beauty underfoot. What started as a search for authenticity became a mission for timeless craftsmanship."
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="text-center p-6 bg-amber-50 rounded-xl">
+      <div class="text-2xl font-bold text-amber-800 mb-2">The Beginning</div>
+      <p>At just 18, a traveler’s longing for handwoven tradition sparked a vision.</p>
+    </div>
+    <div class="text-center p-6 bg-blue-50 rounded-xl">
+      <div class="text-2xl font-bold text-blue-800 mb-2">The First Step</div>
+      <p>Started from a village loom, weaving purity into every thread.</p>
+    </div>
+    <div class="text-center p-6 bg-green-50 rounded-xl">
+      <div class="text-2xl font-bold text-green-800 mb-2">Today & Beyond</div>
+      <p>Now trusted by homes across 12 countries for soulful, sustainable rugs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section class="my-16 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-3xl font-bold text-gray-800">Curated Collection</h2>
+      <a href="/products/" class="text-amber-700 hover:underline">View All →</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for product in featured_products %}
+      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+        <div class="relative">
+          <img src="{{ product.image.url }}" 
+               class="w-full h-64 object-cover" 
+               alt="{{ product.name }}"
+               loading="lazy">
+          <!-- ✅ UPDATED: Use request.currency instead of user_currency -->
+          <div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full font-bold text-sm">
+            {% if request.currency == 'INR' %}
+              ₹{{ product.price_inr }}
+            {% else %}
+              ${{ product.price_usd }}
+            {% endif %}
+          </div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-semibold text-lg text-gray-800">{{ product.name }}</h3>
+          <p class="text-gray-600 text-sm mt-1">{{ product.material }} • {{ product.category }}</p>
+          <div class="mt-4 flex space-x-3">
+            <a href="{% url 'add_to_cart' product.id %}" 
+               class="flex-1 text-center py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-800 font-medium">
+              Add to Cart
+            </a>
+            <a href="{% url 'checkout' product.id %}" 
+               class="flex-1 text-center py-2 bg-amber-700 hover:bg-amber-800 text-white rounded-lg font-medium">
+              Buy Now
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="bg-gray-50 py-16">
+  <div class="max-w-4xl mx-auto text-center px-4">
+    <h2 class="text-3xl font-bold mb-10">Loved by Collectors Worldwide</h2>
+    <div class="space-y-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+        <div class="flex justify-center mb-4">
+          <div class="text-amber-500">★★★★★</div>
+        </div>
+        <p class="text-gray-700 italic">"This Persian rug transformed my living room. The craftsmanship is museum-quality."</p>
+        <p class="mt-4 font-medium">— Priya M., Mumbai</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,481 @@
+/* Add these modern styles to your existing style.css */
+/* KaleenBaba Brand Colors */
+/* Logo Styles */
+/* Logo Styles */
+.logo-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: white;
+  padding: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+  .logo-image {
+    height: 32px;
+    width: 32px;
+    padding: 2px;
+  }
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: white;
+  padding: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+  .logo-image {
+    height: 32px;
+    width: 32px;
+    padding: 2px;
+  }
+  
+  .logo-text {
+    font-size: 1rem;
+  }
+}
+:root {
+  --brand-amber: #e68a17;
+  --brand-amber-dark: #cc7814;
+  --brand-amber-light: #ff9c1a;
+}
+
+/* Update all references */
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand-amber), var(--brand-amber-light));
+  color: white;
+  border: 2px solid var(--brand-amber);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--brand-amber-dark), var(--brand-amber));
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(204, 120, 20, 0.4);
+}
+
+/* Brand-specific styles */
+.navbar-brand {
+  color: #cc7814 !important;
+  font-weight: bold;
+}
+
+.brand-highlight {
+  color: #e68a17;
+  font-weight: bold;
+}
+/* Modern Product Card */
+.product-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Enhanced Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #e68a17, #ff9c1a);
+  color: white;
+  border: 2px solid #e68a17;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #cc7814, #e68a17);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(204, 120, 20, 0.4);
+}
+
+.btn-secondary {
+  background: #f0f0f0;
+  color: #333;
+  border: 2px solid #ddd;
+}
+.btn-secondary:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Inputs */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background: #fafafa;
+  font-family: 'Lato', sans-serif;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #ff9c1a;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(255, 156, 26, 0.2);
+}
+
+/* Smooth animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-gradient {
+    height: 600px !important;
+  }
+  
+  .product-card {
+    margin-bottom: 1.5rem;
+  }
+}
+.product-img {
+  transition: transform 0.3s ease;
+}
+.product-img:hover {
+  transform: scale(1.03);
+}
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+/* static/css/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+
+:root {
+  --amber-500: #ff9c1a;
+  --amber-600: #e68a17;
+  --amber-700: #cc7814;
+  --amber-800: #b36611;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #fff8f0;
+  color: #333;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: var(--amber-600);
+  color: white;
+}
+.btn-primary:hover {
+  background-color: var(--amber-700);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(204, 120, 20, 0.3);
+}
+
+.btn-secondary {
+  background-color: #f3f4f6;
+  color: #333;
+}
+.btn-secondary:hover {
+  background-color: #e5e7eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-google {
+  background-color: #4285F4;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-google:hover {
+  background-color: #3367d6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(66, 133, 244, 0.3);
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Forms */
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--amber-500);
+  box-shadow: 0 0 0 3px rgba(255, 156, 26, 0.2);
+}
+
+/* WhatsApp Float */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 25px;
+  right: 25px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  z-index: 1000;
+  font-size: 24px;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Navbar */
+.navbar-shadow {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(to right, var(--amber-800), var(--amber-700));
+  color: white;
+}
+/* Add to your existing style.css */
+
+/* Product Hover Effects */
+.product-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.product-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Hero Gradient */
+.hero-gradient {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+              url('https://images.unsplash.com/photo-1600586240923-7a9d9e5a3f1e?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Enhanced Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #e68a17, #ff9c1a);
+  color: white;
+  border: 2px solid #e68a17;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #cc7814, #e68a17);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(204, 120, 20, 0.4);
+}
+
+.btn-secondary {
+  background: #f0f0f0;
+  color: #333;
+  border: 2px solid #ddd;
+}
+.btn-secondary:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Inputs */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background: #fafafa;
+  font-family: 'Lato', sans-serif;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #ff9c1a;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(255, 156, 26, 0.2);
+}
+
+/* Smooth Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Logo Styles */
+
+/* Hero Image Styles *//* Hero Image Styles */
+.hero-image {
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+  .hero-image {
+    height: 60vh;
+  }
+  
+  .hero-content {
+    padding: 20px;
+  }
+}
+/* Mobile Menu Styles */
+.mobile-menu-item {
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-item:hover {
+  transform: translateX(5px);
+}
+
+/* Smooth mobile menu animation */
+#mobile-menu {
+  transition: all 0.3s ease;
+}
+/* IP Widget Styles */
+#ip-widget {
+  font-family: 'Lato', sans-serif;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#ip-widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #ip-widget {
+    bottom: 16px;
+    right: 16px;
+    max-width: 280px;
+  }
+}
+/* Add to your static/css/style.css */
+@media (max-width: 768px) {
+  .currency-widget {
+    top: 50px !important;
+    right: 16px !important;
+  }
+}

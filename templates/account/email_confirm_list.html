@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Confirm Your Email | RugCraft{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto my-16">
+  <div class="card p-8 text-center">
+    <h2 class="text-2xl font-bold mb-4">Email Verification Required</h2>
+    <p class="text-gray-600 mb-6">We've sent a verification email to:</p>
+    
+    <div class="bg-amber-50 p-4 rounded-lg mb-6">
+      <p class="font-medium text-amber-800">
+        {% for emailaddress in emailaddresses %}
+          {{ emailaddress.email }}
+        {% endfor %}
+      </p>
+    </div>
+    
+    <p class="text-gray-700 mb-6">Please check your inbox and click the verification link.</p>
+    <p class="text-gray-600 mb-6">If you don't see it, check your spam folder.</p>
+    
+    <div class="space-y-3">
+      <a href="/" class="btn btn-secondary w-full">Continue Shopping</a>
+      <a href="{% url 'account_email_verification_sent' %}" class="btn btn-primary w-full">Resend Email</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Collection | KaleenBaba{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50">
+  <!-- Page Header -->
+  <div class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-heading text-gray-800 mb-4">Our Collection</h1>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+          Discover our curated selection of handwoven rugs, each telling a unique story of tradition and artistry.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters and Controls -->
+  <div class="bg-white border-b">
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <div class="flex flex-col lg:flex-row gap-6 items-center justify-between">
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-4">
+          <select id="category-filter" class="form-input w-40">
+            <option value="">All Categories</option>
+            {% for cat in categories %}
+            <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+            {% endfor %}
+          </select>
+          <select id="material-filter" class="form-input w-40">
+            <option value="">All Materials</option>
+            {% for mat in materials %}
+            <option value="{{ mat }}" {% if selected_material == mat %}selected{% endif %}>{{ mat }}</option>
+            {% endfor %}
+          </select>
+          <select id="sort-filter" class="form-input w-40">
+            <option value="name" {% if selected_sort == 'name' %}selected{% endif %}>Sort by Name</option>
+            <option value="price-low" {% if selected_sort == 'price-low' %}selected{% endif %}>Price: Low to High</option>
+            <option value="price-high" {% if selected_sort == 'price-high' %}selected{% endif %}>Price: High to Low</option>
+            <option value="newest" {% if selected_sort == 'newest' %}selected{% endif %}>Newest First</option>
+          </select>
+        </div>
+        
+        <!-- Results Count -->
+        <div class="text-gray-600">
+          {{ products.count }} products
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <!-- Grid Toggle -->
+    <div class="flex justify-end mb-8">
+      <div class="inline-flex rounded-lg border border-gray-200 p-1">
+        <button id="grid-view" class="px-4 py-2 text-sm font-medium rounded-md bg-amber-100 text-amber-800">
+          <i class="fas fa-th"></i> Grid
+        </button>
+        <button id="list-view" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100">
+          <i class="fas fa-list"></i> List
+        </button>
+      </div>
+    </div>
+
+    <!-- Products Container -->
+    <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      {% for product in products %}
+      <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="relative aspect-square">
+          <img src="{{ product.image.url }}" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+               alt="{{ product.name }}">
+          
+          <!-- Badges -->
+          {% if product.is_featured %}
+          <div class="absolute top-4 left-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+            FEATURED
+          </div>
+          {% endif %}
+          
+          <!-- Price Badge -->
+          <div class="absolute top-4 right-4 bg-black bg-opacity-70 text-white px-3 py-2 rounded-full font-bold text-sm">
+            <!-- ✅ UPDATED: Use request.currency instead of user_currency -->
+            {% if request.currency == 'INR' %}
+              ₹{{ product.price_inr }}
+            {% else %}
+              ${{ product.price_usd }}
+            {% endif %}
+          </div>
+          
+          <!-- Quick Actions -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div class="flex gap-3 w-full">
+              <a href="{% url 'add_to_cart' product.id %}" class="flex-1 bg-white text-amber-700 py-3 rounded-lg font-medium text-center hover:bg-amber-50 transition-colors">
+                <i class="fas fa-shopping-cart mr-2"></i>Add to Cart
+              </a>
+              <a href="{% url 'product_detail' product.id %}" class="flex-1 bg-amber-600 text-white py-3 rounded-lg font-medium text-center hover:bg-amber-700 transition-colors">
+                <i class="fas fa-eye mr-2"></i>View
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="font-bold text-lg text-gray-800 mb-2 group-hover:text-amber-600 transition-colors">
+            {{ product.name }}
+          </h3>
+          <p class="text-gray-600 text-sm mb-3">{{ product.material }} • {{ product.category }}</p>
+          <div class="flex items-center justify-between">
+            <span class="text-amber-600 text-sm font-semibold">Handcrafted</span>
+            <div class="flex text-yellow-400 text-sm">
+              ★★★★★
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-span-full text-center py-20">
+        <div class="text-gray-400 mb-6">
+          <i class="fas fa-search text-6xl"></i>
+        </div>
+        <p class="text-gray-600 text-xl mb-6">No products found matching your criteria.</p>
+        <button onclick="clearFilters()" class="btn btn-primary px-8 py-3">Clear All Filters</button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript for filtering -->
+<script>
+function clearFilters() {
+  document.getElementById('category-filter').value = '';
+  document.getElementById('material-filter').value = '';
+  document.getElementById('sort-filter').value = 'name';
+  // You would add AJAX calls here for dynamic filtering
+}
+
+// Add interactivity for view toggles
+document.getElementById('grid-view').addEventListener('click', function() {
+  document.getElementById('grid-view').classList.add('bg-amber-100', 'text-amber-800');
+  document.getElementById('list-view').classList.remove('bg-amber-100', 'text-amber-800');
+});
+
+document.getElementById('list-view').addEventListener('click', function() {
+  document.getElementById('list-view').classList.add('bg-amber-100', 'text-amber-800');
+  document.getElementById('grid-view').classList.remove('bg-amber-100', 'text-amber-800');
+});
+</script>
+{% endblock %}

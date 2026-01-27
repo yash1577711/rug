@@ -1,0 +1,42 @@
+<!-- Currency Switch Widget - Floating Button -->
+<div class="fixed bottom-20 right-4 z-50">
+  <!-- Main Currency Button -->
+  <div class="bg-amber-600 text-white rounded-full p-3 shadow-lg hover:bg-amber-700 cursor-pointer group"
+       onclick="toggleCurrencyDropdown()">
+    <i class="fas fa-globe"></i>
+  </div>
+  
+  <!-- Currency Dropdown -->
+  <div id="currency-dropdown" class="hidden absolute bottom-16 right-0 bg-white rounded-lg shadow-lg border border-gray-200 w-48 py-2">
+    <form method="post" action="{% url 'set_currency' %}" id="currency-form">
+      {% csrf_token %}
+      <button type="submit" name="currency" value="INR" 
+              class="w-full text-left px-4 py-2 hover:bg-amber-50 text-gray-800 font-medium
+                     {% if request.currency == 'INR' %}bg-amber-100{% endif %}">
+        <span class="text-xl">₹</span> Indian Rupee (INR)
+      </button>
+      <button type="submit" name="currency" value="USD" 
+              class="w-full text-left px-4 py-2 hover:bg-amber-50 text-gray-800 font-medium
+                     {% if request.currency == 'USD' %}bg-amber-100{% endif %}">
+        <span class="text-xl">$</span> US Dollar (USD)
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+function toggleCurrencyDropdown() {
+  const dropdown = document.getElementById('currency-dropdown');
+  dropdown.classList.toggle('hidden');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  const dropdown = document.getElementById('currency-dropdown');
+  const button = dropdown.previousElementSibling;
+  
+  if (!dropdown.contains(e.target) && !button.contains(e.target)) {
+    dropdown.classList.add('hidden');
+  }
+});
+</script>
