@@ -133,10 +133,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='yk1577711@gmail.com')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='batc fesa sjgp llut')
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='yk1577711@gmail.com')
-
+EMAIL_HOST_USER = 'yk1577711@gmail.com'
+EMAIL_HOST_PASSWORD = 'batc fesa sjgp llut'
+DEFAULT_FROM_EMAIL = 'yk1577711@gmail.com'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # Email verification redirects
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'account_login'
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'account_login'
