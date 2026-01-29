@@ -43,6 +43,11 @@ INSTALLED_APPS = [
     'orders',
 ]
 SITE_ID = 1
+CSRF_TRUSTED_ORIGINS = [
+    "https://considerate-transformation-production-fd62.up.railway.app",
+]
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
