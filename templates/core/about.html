@@ -1,163 +1,252 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}About Us | KaleenBaba – Premium Carpets & Rugs{% endblock %}
+{% block title %}About Us | KaleenBaba – Handcrafted Heritage Rugs{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<div class="relative h-96 overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent z-10"></div>
-  <img src="https://images.unsplash.com/photo-1596727147700-6a140a10e6db?auto=format&fit=crop&w=1920&q=80" 
-       alt="KaleenBaba Heritage" class="w-full h-full object-cover">
-  <div class="absolute inset-0 flex items-center">
-    <div class="max-w-4xl mx-auto px-6 z-20">
-      <h1 class="text-5xl font-heading text-white mb-6">About KaleenBaba</h1>
-      <p class="text-xl text-white opacity-90 max-w-2xl">
-        Over four decades of experience bringing authentic craftsmanship to your home. 
-        Our design experts help you choose the perfect carpets and rugs to match your style and space.
+<!-- Hero Section with Parallax Effect -->
+<div class="relative h-[500px] overflow-hidden">
+  <div class="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
+  <img src="https://images.unsplash.com/photo-1605100804763-247f65ac4c99?auto=format&fit=crop&w=1920&q=80" 
+       alt="Master Artisan Weaving" class="w-full h-full object-cover">
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="text-center px-6 z-20 max-w-4xl">
+      <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">Crafted with Heritage</h1>
+      <p class="text-xl text-white opacity-90 max-w-2xl mx-auto leading-relaxed">
+        Since 1980, we've been preserving India's ancient weaving traditions while creating contemporary masterpieces for modern homes worldwide.
       </p>
     </div>
   </div>
 </div>
 
-<!-- Company History -->
+<!-- Our Story - Split Layout -->
 <section class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-4xl font-heading text-gray-800 mb-6">Our Legacy</h2>
-        <p class="text-gray-700 text-lg leading-relaxed mb-6">
-          At KaleenBaba, we bring over four decades of experience to your home or office. Founded in 1980, our journey began with a simple mission: to preserve traditional weaving techniques while creating contemporary designs that resonate with modern homes.
-        </p>
-        <p class="text-gray-700 text-lg leading-relaxed mb-6">
-          Our design experts work closely with master weavers from Bhadohi, Uttar Pradesh, ensuring each piece reflects the rich heritage of Indian craftsmanship. Today, we serve customers across India and internationally, bringing the warmth and beauty of handcrafted rugs to homes worldwide.
-        </p>
-        <div class="bg-amber-50 p-6 rounded-xl mb-6">
-          <h3 class="font-bold text-lg text-amber-800 mb-3">Our Promise</h3>
-          <p class="text-amber-700">Quality, authenticity, and customer satisfaction are at the heart of everything we do.</p>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="order-2 lg:order-1">
+        <div class="space-y-8">
+          <div>
+            <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              In the heart of Bhadohi, India—the carpet capital of the world—our founder began with a simple vision: to bridge centuries-old craftsmanship with contemporary design sensibilities. What started as a small workshop has grown into a global destination for authentic hand-knotted rugs.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Today, we collaborate with over 200 master artisans across rural India, ensuring fair wages, sustainable practices, and the preservation of traditional techniques that have been passed down through generations.
+            </p>
+          </div>
+          
+          <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-0.5 rounded-xl w-fit">
+            <div class="bg-white px-8 py-6 rounded-xl">
+              <div class="flex items-center space-x-4">
+                <div class="text-4xl font-bold text-amber-600">40+</div>
+                <div>
+                  <div class="font-bold text-gray-900">Years of Excellence</div>
+                  <div class="text-gray-600">Preserving Heritage Since 1980</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       
-      <div class="relative">
-        <img src="https://images.unsplash.com/photo-1596727147700-6a140a10e6db?auto=format&fit=crop&w=600&q=80" 
-             alt="Artisan Crafting" class="rounded-2xl shadow-2xl">
-        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
-          <div class="text-3xl font-bold text-amber-600">40+</div>
-          <div class="text-gray-600">Years Experience</div>
+      <div class="order-1 lg:order-2 relative">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+          <img src="https://images.unsplash.com/photo-1584824486509-112e4181ff6b?auto=format&fit=crop&w=600&q=80" 
+               alt="Artisan at Work" class="w-full h-auto">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border-4 border-amber-100">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-amber-600">200+</div>
+            <div class="text-gray-700 font-medium">Master Artisans</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Certifications -->
-<section class="py-20 bg-amber-50">
-  <div class="max-w-7xl mx-auto px-4">
+<!-- Craftsmanship Section -->
+<section class="py-20 bg-gradient-to-br from-amber-50 to-orange-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-heading text-gray-800 mb-4">Certifications</h2>
-      <p class="text-gray-600 text-lg">Recognized for quality and excellence by international standards</p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Certification 1 -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
-        <div class="flex justify-center mb-4">
-          <img src="https://via.placeholder.com/150x80?text=Indian+Government" 
-               alt="Indian Government" class="h-20 w-auto">
-        </div>
-        <h3 class="font-bold text-center text-gray-800">Indian Government</h3>
-      </div>
-      
-      <!-- Certification 2 -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
-        <div class="flex justify-center mb-4">
-          <img src="https://via.placeholder.com/150x80?text=Egyptian+Accreditation" 
-               alt="Egyptian Accreditation Council" class="h-20 w-auto">
-        </div>
-        <h3 class="font-bold text-center text-gray-800">Egyptian Accreditation Council</h3>
-      </div>
-      
-      <!-- Certification 3 -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
-        <div class="flex justify-center mb-4">
-          <img src="https://via.placeholder.com/150x80?text=IAF" 
-               alt="International Accreditation Forum" class="h-20 w-auto">
-        </div>
-        <h3 class="font-bold text-center text-gray-800">International Accreditation Forum</h3>
-      </div>
-      
-      <!-- Certification 4 -->
-      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
-        <div class="flex justify-center mb-4">
-          <img src="https://via.placeholder.com/150x80?text=ISO" 
-               alt="ISO Certified" class="h-20 w-auto">
-        </div>
-        <h3 class="font-bold text-center text-gray-800">ISO Certified</h3>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Customer Reviews -->
-<section class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-heading text-gray-800 mb-4">What Our Customers Say</h2>
-      <p class="text-gray-600 text-lg">Join thousands of satisfied customers who trust KaleenBaba</p>
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">The Art of Hand-Knotting</h2>
+      <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+        Every KaleenBaba rug tells a story of patience, precision, and passion.
+      </p>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Review 1 -->
-      <div class="bg-amber-50 p-6 rounded-xl shadow-sm border border-amber-200">
-        <div class="flex text-yellow-400 mb-4">
-          ★★★★★
+      <!-- Process Step 1 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+        <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+          <span class="text-2xl font-bold text-amber-600">1</span>
         </div>
-        <p class="text-gray-700 mb-4">
-          "The rug exceeded my expectations! The craftsmanship is impeccable and it perfectly complements my living room."
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Natural Materials</h3>
+        <p class="text-gray-700">
+          We source the finest wool, silk, and cotton from ethical suppliers, ensuring durability and natural beauty.
         </p>
-        <div class="font-bold text-gray-800">Sarah Johnson</div>
-        <div class="text-gray-600 text-sm">New York, USA</div>
       </div>
       
-      <!-- Review 2 -->
-      <div class="bg-amber-50 p-6 rounded-xl shadow-sm border border-amber-200">
-        <div class="flex text-yellow-400 mb-4">
-          ★★★★★
+      <!-- Process Step 2 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+        <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+          <span class="text-2xl font-bold text-amber-600">2</span>
         </div>
-        <p class="text-gray-700 mb-4">
-          "Exceptional customer service and stunning products. I've purchased multiple rugs and will continue to do so!"
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Hand-Knotted Precision</h3>
+        <p class="text-gray-700">
+          Each knot is tied by hand—a single rug can take 3-6 months and contain over 1 million knots.
         </p>
-        <div class="font-bold text-gray-800">Raj Patel</div>
-        <div class="text-gray-600 text-sm">Mumbai, India</div>
       </div>
       
-      <!-- Review 3 -->
-      <div class="bg-amber-50 p-6 rounded-xl shadow-sm border border-amber-200">
+      <!-- Process Step 3 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+        <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+          <span class="text-2xl font-bold text-amber-600">3</span>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Natural Dyes</h3>
+        <p class="text-gray-700">
+          We use plant-based dyes that create rich, lasting colors while being environmentally sustainable.
+        </p>
+      </div>
+    </div>
+    
+    <div class="mt-16 text-center">
+      <img src="https://images.unsplash.com/photo-1596727147700-6a140a10e6db?auto=format&fit=crop&w=1200&q=80" 
+           alt="Close-up of Hand-Knotted Rug" class="rounded-2xl shadow-2xl mx-auto">
+      <p class="mt-6 text-gray-600 italic">"A hand-knotted rug is not just a floor covering—it's a piece of art that will be treasured for generations."</p>
+    </div>
+  </div>
+</section>
+
+<!-- Impact & Sustainability -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1584824486509-112e4181ff6b?auto=format&fit=crop&w=600&q=80" 
+             alt="Women Artisans" class="rounded-2xl shadow-2xl">
+        <div class="absolute -top-6 -left-6 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 rounded-xl">
+          <div class="font-bold text-lg">Empowering Communities</div>
+        </div>
+      </div>
+      
+      <div>
+        <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Social Impact</h2>
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+          We believe in business as a force for good. Through our partnerships with artisan communities, we've:
+        </p>
+        
+        <div class="space-y-4">
+          <div class="flex items-start space-x-4">
+            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+              <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900">Fair Wages</div>
+              <div class="text-gray-700">Artisans earn 3x the local average wage</div>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+              <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900">Education Support</div>
+              <div class="text-gray-700">Funding schools for artisans' children</div>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+              <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900">Zero Waste</div>
+              <div class="text-gray-700">Sustainable production with minimal environmental impact</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-20 bg-gradient-to-br from-gray-900 to-black text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">Trusted by Designers Worldwide</h2>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+        Interior designers, architects, and homeowners choose KaleenBaba for exceptional quality and timeless beauty.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-2xl border border-white border-opacity-20">
         <div class="flex text-yellow-400 mb-4">
           ★★★★★
         </div>
-        <p class="text-gray-700 mb-4">
-          "The quality is unmatched. My guests always compliment the rug and ask where I got it!"
-        </p>
-        <div class="font-bold text-gray-800">Emma Thompson</div>
-        <div class="text-gray-600 text-sm">London, UK</div>
+        <p class="text-lg mb-6 italic">"KaleenBaba rugs are the cornerstone of my luxury interior projects. The quality and authenticity are unmatched."</p>
+        <div class="flex items-center">
+          <div class="ml-4">
+            <div class="font-bold">Alexandra Chen</div>
+            <div class="text-gray-300">Interior Designer, New York</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Testimonial 2 -->
+      <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-2xl border border-white border-opacity-20">
+        <div class="flex text-yellow-400 mb-4">
+          ★★★★★
+        </div>
+        <p class="text-lg mb-6 italic">"After 15 years in the hospitality industry, I can confidently say KaleenBaba provides the most durable and beautiful rugs for luxury hotels."</p>
+        <div class="flex items-center">
+          <div class="ml-4">
+            <div class="font-bold">James Wilson</div>
+            <div class="text-gray-300">Hotel Group Director, London</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Testimonial 3 -->
+      <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-2xl border border-white border-opacity-20">
+        <div class="flex text-yellow-400 mb-4">
+          ★★★★★
+        </div>
+        <p class="text-lg mb-6 italic">"My KaleenBaba rug has been the centerpiece of my living room for 8 years and still looks brand new. Worth every penny!"</p>
+        <div class="flex items-center">
+          <div class="ml-4">
+            <div class="font-bold">Priya Sharma</div>
+            <div class="text-gray-300">Homeowner, Mumbai</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Call to Action -->
-<section class="py-20 bg-gradient-to-br from-amber-900 to-amber-800 text-white">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <h2 class="text-3xl font-heading mb-4">Ready to Transform Your Space?</h2>
-    <p class="text-amber-200 mb-8 text-lg">
-      Let our design experts help you find the perfect rug for your home or office.
+<section class="py-20 bg-gradient-to-r from-amber-600 to-orange-600 text-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-4xl font-bold mb-6">Experience the KaleenBaba Difference</h2>
+    <p class="text-xl text-amber-100 mb-10 max-w-2xl mx-auto">
+      Discover why discerning customers choose us for their most important spaces.
     </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="{% url 'product_list' %}" class="btn btn-primary px-8 py-4 text-lg bg-white text-amber-900 hover:bg-amber-100">
-        Explore Collection
+    <div class="flex flex-col sm:flex-row gap-6 justify-center">
+      <a href="{% url 'product_list' %}" class="bg-white text-amber-700 hover:bg-amber-50 font-bold px-8 py-4 rounded-xl text-lg transition-colors">
+        Explore Our Collection
       </a>
-      <a href="{% url 'trade' %}" class="btn btn-secondary px-8 py-4 text-lg bg-transparent border border-white hover:bg-white hover:text-amber-900">
+      <a href="{% url 'trade' %}" class="bg-transparent border-2 border-white hover:bg-white hover:text-amber-700 font-bold px-8 py-4 rounded-xl text-lg transition-colors">
         Trade Inquiry
       </a>
     </div>
