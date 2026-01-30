@@ -47,15 +47,15 @@ INSTALLED_APPS = [
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.up.railway.app",
+    "https://considerate-transformation-production-fd62.up.railway.app",
 ]
 
 
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_SAMESITE = "None"
-CSRF_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SAMESITE = "Lax"
+CSRF_COOKIE_SAMESITE = "Lax"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -117,11 +117,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Security (only apply in production)
-if not DEBUG:
-    SECURE_HSTS_SECONDS = 31536000
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+
+SECURE_HSTS_SECONDS = 31536000
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 
 ACCOUNT_LOGIN_METHODS = ['username', 'email']
