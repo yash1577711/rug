@@ -115,6 +115,9 @@ ACCOUNT_LOGIN_METHODS = ['email']
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = "/admin/login/"
+LOGIN_URL = "/admin/login/"
+
 LOGOUT_REDIRECT_URL = '/'
 # Social Login (Google)
 SOCIALACCOUNT_PROVIDERS = {
