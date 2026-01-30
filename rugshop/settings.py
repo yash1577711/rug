@@ -61,15 +61,16 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
 
-    # 🔥 ORDER MATTERS HERE
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    
     'allauth.account.middleware.AccountMiddleware',
 
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'core.middleware.CurrencyDetectionMiddleware',
 ]
-
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+]
 
 ROOT_URLCONF = 'rugshop.urls'
 
