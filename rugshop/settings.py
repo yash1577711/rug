@@ -125,7 +125,7 @@ LOGIN_URL = "/admin/login/"
 LOGIN_REDIRECT_URL = "/admin/"
 LOGOUT_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
-ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
+ACCOUNT_ADAPTER = "accounts.adapters.CustomAccountAdapter"
 
 
 
@@ -168,7 +168,7 @@ DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='yk1577711@gmail.com')
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 # Allauth
-ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ALLAUTH_ADMIN_LOGIN_ENABLED = False
 
 # For IP detection
