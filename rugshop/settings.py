@@ -44,12 +44,15 @@ INSTALLED_APPS = [
     'orders',
 ]
 SITE_ID = 1
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CSRF_TRUSTED_ORIGINS = [
     "https://considerate-transformation-production-fd62.up.railway.app",
 ]
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_SAMESITE = "None"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -116,7 +119,8 @@ ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = "/admin/login/"
-LOGIN_URL = "/admin/login/"
+LOGIN_REDIRECT_URL = "/admin/"
+
 
 LOGOUT_REDIRECT_URL = '/'
 # Social Login (Google)
