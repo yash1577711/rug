@@ -22,7 +22,7 @@ urlpatterns = [
     path('accounts/password/reset/key/<uidb64>/<token>/', 
          CustomPasswordResetConfirmView.as_view(), 
          name='password_reset_confirm'),
-   # path('accounts/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),
     path('about/', core_views.about, name='about'),
     path('set-ip/', core_views.set_manual_ip, name='set_manual_ip'),
     path('set-currency/', core_views.set_currency, name='set_currency'),
