@@ -72,10 +72,6 @@ MIDDLEWARE = [
     "core.middleware.CurrencyDetectionMiddleware",
 ]
 
-AUTHENTICATION_BACKENDS = [
-    "django.contrib.auth.backends.ModelBackend",
-]
-
 ROOT_URLCONF = 'rugshop.urls'
 
 TEMPLATES = [{
