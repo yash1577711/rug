@@ -2,6 +2,21 @@
 from ipware import get_client_ip
 import requests
 from django.utils.deprecation import MiddlewareMixin
+from django.contrib.auth import logout
+class AdminAllauthBypassMiddleware:
+    """
+    Completely bypass django-allauth for /admin routes.
+    Forces pure Django auth for admin.
+    """
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if request.path.startswith("/admin"):
+            # Mark request so allauth ignores it
+            request._dont_enforce_csrf_checks = False
+            request._allauth_login = False
+        return self.get_response(request)
 
 class CurrencyDetectionMiddleware(MiddlewareMixin):  # ✅ Keep this name
     def process_request(self, request):
