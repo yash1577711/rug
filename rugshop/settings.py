@@ -26,15 +26,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-   # 'django.contrib.sitemaps',
-    #'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
 
     # Third-party
-   # 'allauth',
-    #'allauth.account',
-   # 'allauth.socialaccount',
-   # 'allauth.socialaccount.providers.google',
-   # 'ipware',
+   'allauth',
+'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'ipware',
     'anymail',
 
     # Local
@@ -54,7 +54,7 @@ SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_SAMESITE = "Lax"
 
-'''MIDDLEWARE = [
+MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -70,20 +70,8 @@ CSRF_COOKIE_SAMESITE = "Lax"
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "core.middleware.CurrencyDetectionMiddleware",
-]'''
+]
 
-MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
-]
-AUTHENTICATION_BACKENDS = [
-    "django.contrib.auth.backends.ModelBackend",
-]
 
 
 ROOT_URLCONF = 'rugshop.urls'
