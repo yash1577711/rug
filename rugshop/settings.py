@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'ipware',
-    "anymail"
+    'anymail',
 
     # Local
     'core',
