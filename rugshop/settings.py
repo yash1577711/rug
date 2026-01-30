@@ -60,17 +60,17 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-
-    # 🔑 REQUIRED FOR request.user
     "django.contrib.auth.middleware.AuthenticationMiddleware",
 
-    # allauth still needs this
-    "allauth.account.middleware.AccountMiddleware",
+    # 🔥 ADD THIS LINE (before allauth)
+    "core.middleware.AdminAllauthBypassMiddleware",
 
+    "allauth.account.middleware.AccountMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "core.middleware.CurrencyDetectionMiddleware",
 ]
+
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",  # ✅ FOR ADMIN
