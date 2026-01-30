@@ -30,8 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # Third-party
-   'allauth',
-'allauth.account',
+    'allauth',
+    'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'ipware',
@@ -72,6 +72,10 @@ MIDDLEWARE = [
     "core.middleware.CurrencyDetectionMiddleware",
 ]
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",  # ✅ FOR ADMIN
+    "allauth.account.auth_backends.AuthenticationBackend",  # ✅ FOR USERS
+]
 
 
 ROOT_URLCONF = 'rugshop.urls'
@@ -116,17 +120,13 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
-# Allauth
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
+
 ACCOUNT_LOGIN_METHODS = ['username', 'email']
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
-ACCOUNT_EMAIL_VERIFICATION = 'op'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_URL = "/admin/login/"
 LOGIN_REDIRECT_URL = "/admin/"
-LOGOUT_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/admin/login/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 ACCOUNT_ADAPTER = "accounts.adapters.CustomAccountAdapter"
 
