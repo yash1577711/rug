@@ -185,3 +185,19 @@ IPWARE_META_PRECEDENCE_ORDER = (
     'HTTP_FORWARDED',
     'REMOTE_ADDR',
 )
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django.contrib.auth": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
+    },
+}
+
