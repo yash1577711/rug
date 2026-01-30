@@ -18,7 +18,7 @@ if os.path.exists(os.path.join(BASE_DIR, '.env')):
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 ALLOWED_HOSTS = env('ALLOWED_HOSTS', default='').split(',')
-
+SITE_ID = 1
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'orders',
 ]
-SITE_ID = 1
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CSRF_TRUSTED_ORIGINS = [
     "https://considerate-transformation-production-fd62.up.railway.app",
