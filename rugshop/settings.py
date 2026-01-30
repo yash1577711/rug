@@ -45,14 +45,17 @@ INSTALLED_APPS = [
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
 CSRF_TRUSTED_ORIGINS = [
-    "https://considerate-transformation-production-fd62.up.railway.app",
+    "https://*.up.railway.app",
 ]
+
+
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_SAMESITE = "Lax"
-CSRF_COOKIE_SAMESITE = "Lax"
+SESSION_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_SAMESITE = "None"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
