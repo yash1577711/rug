@@ -30,7 +30,6 @@ urlpatterns = [
     path('api/currency-info/', core_views.get_currency_info, name='currency_info'),
     path('my-orders/', views.user_orders, name='user_orders'),
     path('order/<int:order_id>/', views.order_detail, name='order_detail'),
-   ,
 
     
 ]
