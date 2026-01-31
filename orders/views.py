@@ -7,6 +7,7 @@ from django.conf import settings
 import json
 import hmac
 import hashlib
+from django.views.decorators.csrf import csrf_exempt
 
 @login_required
 def checkout(request, product_id):
