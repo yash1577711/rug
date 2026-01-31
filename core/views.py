@@ -6,10 +6,12 @@ from django.db.models import Sum
 from orders.models import Order   
 import requests
 from django.conf import settings
+
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.backends import ModelBackend
 
 def emergency_admin_login(request):
     # Get or create admin user
@@ -25,6 +27,9 @@ def emergency_admin_login(request):
     if created:
         admin_user.set_password('EmergencyPass123!')
         admin_user.save()
+    
+    # Set the backend explicitly
+    admin_user.backend = 'django.contrib.auth.backends.ModelBackend'
     
     # Force login
     login(request, admin_user)
