@@ -8,7 +8,11 @@ import json
 import hmac
 import hashlib
 from django.views.decorators.csrf import csrf_exempt
+def order_success(request):
+    return render(request, 'orders/success.html')
 
+def order_cancel(request):
+    return render(request, 'orders/cancel.html')
 @login_required
 def checkout(request, product_id):
     product = get_object_or_404(Product, id=product_id)
