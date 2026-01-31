@@ -1,13 +1,12 @@
-# orders/views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import Order
 from products.models import Product
-import stripe
 from django.conf import settings
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
+import json
+import hmac
+import hashlib
 
 @login_required
 def checkout(request, product_id):
@@ -48,49 +47,6 @@ def create_order(request, product_id, payment_id=None):
     )
     return order
 
-# Update your existing views to create orders
-# orders/views.py
-@login_required
-def create_checkout_session(request):
-    if request.method == 'POST':
-        product_id = request.POST.get('product_id')
-        product = get_object_or_404(Product, id=product_id)
-        
-        try:
-            # Create client_reference_id to identify user and product
-            client_reference_id = f"{request.user.id}_{product_id}"
-            
-            checkout_session = stripe.checkout.Session.create(
-                payment_method_types=['card'],
-                line_items=[{
-                    'price_data': {
-                        'currency': 'usd',
-                        'product_data': {
-                            'name': product.name,
-                        },
-                        'unit_amount': int(product.price_usd * 100),
-                    },
-                    'quantity': 1,
-                }],
-                mode='payment',
-                client_reference_id=client_reference_id,  # Critical for webhook
-                success_url=request.build_absolute_uri('/success/'),
-                cancel_url=request.build_absolute_uri('/cancel/'),
-            )
-            return redirect(checkout_session.url, code=303)
-        except Exception as e:
-            return JsonResponse({'error': str(e)}, status=400)
-    
-    return redirect('home')
-def order_success(request):
-    # In real app, verify the session with Stripe
-    # For now, create order directly
-    # You'll need to pass product_id somehow (via session or URL)
-    return render(request, 'orders/success.html')
-
-def order_cancel(request):
-    return render(request, 'orders/cancel.html')
-
 # New: User Order Management
 @login_required
 def user_orders(request):
@@ -101,7 +57,7 @@ def user_orders(request):
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
     return render(request, 'orders/order_detail.html', {'order': order})
-# orders/views.py
+
 def create_order_after_payment(user, product_id, payment_id, currency):
     """Create order after successful payment"""
     from products.models import Product
@@ -121,11 +77,7 @@ def create_order_after_payment(user, product_id, payment_id, currency):
         status='confirmed'  # Payment successful, so confirmed
     )
     return order
-# orders/views.py
-from django.views.decorators.csrf import csrf_exempt
-import json
 
-@csrf_exempt
 @login_required
 def create_order_view(request):
     if request.method == 'POST':
@@ -143,92 +95,6 @@ def create_order_view(request):
         
         return JsonResponse({'order_id': order.id})
     return JsonResponse({'error': 'Invalid request'})
-# orders/views.py
-import json
-import hmac
-import hashlib
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
-from django.conf import settings
-import stripe
-
-# Initialize Stripe
-stripe.api_key = settings.STRIPE_SECRET_KEY
-# orders/views.py
-@csrf_exempt
-def stripe_webhook(request):
-    payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    event = None
-
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
-        )
-    except ValueError as e:
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        return HttpResponse(status=400)
-
-    if event['type'] == 'checkout.session.completed':
-        session = event['data']['object']
-        
-        # Extract user_id and product_id from client_reference_id
-        client_reference_id = session.get('client_reference_id')
-        if not client_reference_id:
-            return HttpResponse(status=400)
-            
-        try:
-            user_id, product_id = client_reference_id.split('_')
-            user_id = int(user_id)
-            product_id = int(product_id)
-            
-            # Get the user and product
-            from django.contrib.auth.models import User
-            from products.models import Product
-            
-            user = User.objects.get(id=user_id)
-            product = Product.objects.get(id=product_id)
-            
-            # ✅ HERE IS YOUR VERIFICATION LOGIC
-            # If your Product model has a 'user' field (seller/owner):
-            # if hasattr(product, 'user') and product.user != user:
-            #     return HttpResponse(status=400)
-            
-            # For most e-commerce sites, any user can buy any product
-            # So this verification might not be needed unless you have specific business logic
-            
-            # Create the order
-            currency = session['currency'].upper()
-            amount = session['amount_total'] / 100
-            
-            Order.objects.create(
-                user=user,
-                product=product,
-                total_amount=amount,
-                currency=currency,
-                payment_id=session['payment_intent'],
-                stripe_payment_intent_id=session['payment_intent'],
-                stripe_webhook_verified=True,
-                status='confirmed'
-            )
-            
-        except (ValueError, User.DoesNotExist, Product.DoesNotExist) as e:
-            print(f"Webhook error: {e}")
-            return HttpResponse(status=400)
-
-    return HttpResponse(status=200)
-
-# orders/views.py
-import json
-import hmac
-import hashlib
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
-from django.conf import settings
-from django.contrib.auth.models import User
-from products.models import Product
-from .models import Order
 
 @csrf_exempt
 def razorpay_webhook(request):
@@ -280,6 +146,9 @@ def razorpay_webhook(request):
                 if razorpay_payment_id and user_id and product_id:
                     try:
                         # Get user and product
+                        from django.contrib.auth.models import User
+                        from products.models import Product
+                        
                         user = User.objects.get(id=int(user_id))
                         product = Product.objects.get(id=int(product_id))
                         
@@ -309,5 +178,3 @@ def razorpay_webhook(request):
             return HttpResponse(status=400)
     
     return HttpResponse(status=200)
-from django.views.decorators.csrf import csrf_exempt
-
