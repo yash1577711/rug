@@ -17,7 +17,12 @@ if os.path.exists(os.path.join(BASE_DIR, '.env')):
 
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
-ALLOWED_HOSTS = env('ALLOWED_HOSTS', default='').split(',')
+ALLOWED_HOSTS = [
+    "considerate-transformation-production-fd62.up.railway.app",
+    "localhost",
+    "127.0.0.1",
+]
+
 SITE_ID = 1
 INSTALLED_APPS = [
     'django.contrib.admin',
