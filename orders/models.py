@@ -1,4 +1,3 @@
-# orders/models.py
 from django.db import models
 from django.contrib.auth.models import User
 from products.models import Product
@@ -22,13 +21,9 @@ class Order(models.Model):
     # Generic payment ID (for admin display)
     payment_id = models.CharField(max_length=100, blank=True, null=True)
     
-    # Specific payment IDs
+    # Razorpay specific fields only
     razorpay_payment_id = models.CharField(max_length=100, blank=True, null=True)
-    stripe_payment_intent_id = models.CharField(max_length=100, blank=True, null=True)
-    
-    # Webhook verification
     razorpay_webhook_verified = models.BooleanField(default=False)
-    stripe_webhook_verified = models.BooleanField(default=False)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
