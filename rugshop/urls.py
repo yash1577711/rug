@@ -28,11 +28,9 @@ urlpatterns = [
     path('set-ip/', core_views.set_manual_ip, name='set_manual_ip'),
     path('set-currency/', core_views.set_currency, name='set_currency'),
     path('api/currency-info/', core_views.get_currency_info, name='currency_info'),
-    path('success/', views.order_success, name='order_success'),
-    path('cancel/', views.order_cancel, name='order_cancel'),
     path('my-orders/', views.user_orders, name='user_orders'),
     path('order/<int:order_id>/', views.order_detail, name='order_detail'),
-    path('create-checkout-session/', orders_views.create_checkout_session, name='create_checkout_session'),
+   ,
 
     
 ]
