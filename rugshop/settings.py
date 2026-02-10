@@ -20,7 +20,7 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = [
     "considerate-transformation-production-fd62.up.railway.app",
     "localhost",
-   " https://kalinbaba.onrender.com",
+   "kalinbaba.onrender.com",
     "127.0.0.1",
 ]
 
